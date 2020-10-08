@@ -6,7 +6,7 @@ namespace _07_Workshop
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            TicTacToeGame ticTakToeGame = new TicTacToeGame();
         }
     }
 }
