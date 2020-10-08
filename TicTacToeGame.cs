@@ -60,10 +60,10 @@ namespace _07_Workshop
             {
                 if (!positionFilled[i])
                 {
-                    Console.Write(i + ", ");
+                    Console.Write(i + " ");
                 }
             }
-            Console.WriteLine("Please enter your choice from above-mentioned choices");
+            Console.WriteLine("\nPlease enter your choice from above-mentioned choices");
             int userMove = Convert.ToInt32(Console.ReadLine());
             if (userMove>=1 && userMove<=9 && positionFilled[userMove])
             {
