@@ -9,6 +9,8 @@ namespace _07_Workshop
         char[] board = new char[10];
         char humanChoice = ' ', computerChoice = ' ';
         private bool[] positionFilled = new bool[10];
+        const int botFirst = 0, userFirst = 1;
+        int toss;
 
         public TicTacToeGame()
         {
@@ -53,6 +55,21 @@ namespace _07_Workshop
             Console.WriteLine(board[7] + "|" + board[8] + "|" + board[9]+"\n");
         }
 
+        public void Toss()
+        {
+            Random random = new Random();
+            int toss = random.Next(0, 2);
+            if (toss == botFirst)
+            {
+                Console.WriteLine("\nBot Wins the toss");
+            }
+            else
+            {
+                Console.WriteLine("\nUser wins the toss");
+            }
+            
+        }
+
         public void UserMove()
         {
             bool flag = true;
@@ -79,10 +96,11 @@ namespace _07_Workshop
                 else
                 {
                     board[userMove] = humanChoice;
+                    positionFilled[userMove] = true;
                     flag = false;
                 }
             }
-            
+            DisplayBoard();
             BotMove();
         }
 
@@ -100,7 +118,21 @@ namespace _07_Workshop
             int cursorMovement = random.Next(0, availablePlaces.Count);
             int botMove = availablePlaces[cursorMovement];
             board[botMove] = computerChoice;
+            positionFilled[botMove] = true;
             Console.WriteLine("Bot marks at: "+botMove);
+            DisplayBoard();
+        }
+
+        public void StartGame()
+        {
+            if(toss == botFirst)
+            {
+                BotMove();
+            }
+            else
+            {
+                UserMove();
+            }
         }
     }
 }
