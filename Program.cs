@@ -7,6 +7,8 @@ namespace _07_Workshop
         static void Main(string[] args)
         {
             TicTacToeGame ticTakToeGame = new TicTacToeGame();
+            ticTakToeGame.ChoiceOfLetter();
+            ticTakToeGame.DisplayBoard();
         }
     }
 }

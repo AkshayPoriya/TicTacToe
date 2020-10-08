@@ -15,7 +15,6 @@ namespace _07_Workshop
             {
                 board[i] = ' ';
             }
-            ChoiceOfLetter();
         }
 
         public void ChoiceOfLetter()
@@ -39,6 +38,17 @@ namespace _07_Workshop
                     computerChoice = 'O';
                     break;
             }
+            Console.WriteLine("User Choice: "+humanChoice);
+            Console.WriteLine("Bot Choice: "+computerChoice);
+        }
+
+        public void DisplayBoard()
+        {
+            Console.WriteLine("\n"+board[1] + "|" + board[2] + "|" + board[3]);
+            Console.WriteLine("------");
+            Console.WriteLine(board[4] + "|" + board[5] + "|" + board[6]);
+            Console.WriteLine("------");
+            Console.WriteLine(board[7] + "|" + board[8] + "|" + board[9]+"\n");
         }
 
     }
