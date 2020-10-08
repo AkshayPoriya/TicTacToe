@@ -11,7 +11,6 @@ namespace _07_Workshop
             ticTacToeGame.Toss();
             ticTacToeGame.ChoiceOfLetter();
             ticTacToeGame.StartGame();
-            ticTacToeGame.UserMove();
         }
     }
 }
