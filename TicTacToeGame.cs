@@ -55,28 +55,52 @@ namespace _07_Workshop
 
         public void UserMove()
         {
-            Console.WriteLine("Available Positions in Board:");
-            for(int i = 1; i < positionFilled.Length; i++)
+            bool flag = true;
+            while (flag)
+            {
+                Console.WriteLine("Available Positions in Board:");
+                for (int i = 1; i < positionFilled.Length; i++)
+                {
+                    if (!positionFilled[i])
+                    {
+                        Console.Write(i + " ");
+                    }
+                }
+                Console.WriteLine("\nPlease enter your choice from above-mentioned choices");
+                int userMove = Convert.ToInt32(Console.ReadLine());
+                if (userMove >= 1 && userMove <= 9 && positionFilled[userMove])
+                {
+                    Console.WriteLine("Invalid Choice, Position already filled! Enter again!");
+                }
+                else if (userMove < 1 || userMove > 9)
+                {
+                    Console.WriteLine("Invalid Entry! Try Again!");
+                }
+                else
+                {
+                    board[userMove] = humanChoice;
+                    flag = false;
+                }
+            }
+            
+            BotMove();
+        }
+
+        public void BotMove()
+        {
+            List<int> availablePlaces = new List<int>();
+            for (int i = 1; i < positionFilled.Length; i++)
             {
                 if (!positionFilled[i])
                 {
-                    Console.Write(i + " ");
+                    availablePlaces.Add(i);
                 }
             }
-            Console.WriteLine("\nPlease enter your choice from above-mentioned choices");
-            int userMove = Convert.ToInt32(Console.ReadLine());
-            if (userMove>=1 && userMove<=9 && positionFilled[userMove])
-            {
-                Console.WriteLine("Invalid Choice, Position already filled!");
-            }
-            else if(userMove<1 || userMove>9)
-            {
-                Console.WriteLine("Invalid Entry");
-            }
-            else
-            {
-                board[userMove] = humanChoice;
-            }
+            Random random = new Random();
+            int cursorMovement = random.Next(0, availablePlaces.Count);
+            int botMove = availablePlaces[cursorMovement];
+            board[botMove] = computerChoice;
+            Console.WriteLine("Bot marks at: "+botMove);
         }
     }
 }

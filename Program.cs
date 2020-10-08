@@ -10,6 +10,7 @@ namespace _07_Workshop
             ticTakToeGame.ChoiceOfLetter();
             ticTakToeGame.DisplayBoard();
             ticTakToeGame.UserMove();
+            ticTakToeGame.DisplayBoard();
         }
     }
 }
