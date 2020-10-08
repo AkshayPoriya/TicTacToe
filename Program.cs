@@ -9,8 +9,8 @@ namespace _07_Workshop
             TicTacToeGame ticTakToeGame = new TicTacToeGame();
             ticTakToeGame.ChoiceOfLetter();
             ticTakToeGame.DisplayBoard();
-            ticTakToeGame.UserMove();
-            ticTakToeGame.DisplayBoard();
+            ticTakToeGame.Toss();
+            //ticTakToeGame.UserMove();
         }
     }
 }
