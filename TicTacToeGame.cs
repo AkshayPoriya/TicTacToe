@@ -59,18 +59,17 @@ namespace _07_Workshop
         {
             Random random = new Random();
             int toss = random.Next(0, 2);
-
             if (toss == botFirst)
             {
-                Console.WriteLine("Bot Moves First");
-                BotMove();
+                Console.WriteLine("\nBot Wins the toss");
             }
             else
             {
-                Console.WriteLine("User Moves First");
-                UserMove();
+                Console.WriteLine("\nUser wins the toss");
             }
+            
         }
+
         public void UserMove()
         {
             bool flag = true;
@@ -97,6 +96,7 @@ namespace _07_Workshop
                 else
                 {
                     board[userMove] = humanChoice;
+                    positionFilled[userMove] = true;
                     flag = false;
                 }
             }
@@ -118,8 +118,21 @@ namespace _07_Workshop
             int cursorMovement = random.Next(0, availablePlaces.Count);
             int botMove = availablePlaces[cursorMovement];
             board[botMove] = computerChoice;
+            positionFilled[botMove] = true;
             Console.WriteLine("Bot marks at: "+botMove);
             DisplayBoard();
+        }
+
+        public void StartGame()
+        {
+            if(toss == botFirst)
+            {
+                BotMove();
+            }
+            else
+            {
+                UserMove();
+            }
         }
     }
 }

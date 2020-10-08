@@ -6,11 +6,12 @@ namespace _07_Workshop
     {
         static void Main(string[] args)
         {
-            TicTacToeGame ticTakToeGame = new TicTacToeGame();
-            ticTakToeGame.ChoiceOfLetter();
-            ticTakToeGame.DisplayBoard();
-            ticTakToeGame.Toss();
-            //ticTakToeGame.UserMove();
+            Console.WriteLine("Welcome to TicTacToe Game!");
+            TicTacToeGame ticTacToeGame = new TicTacToeGame();
+            ticTacToeGame.Toss();
+            ticTacToeGame.ChoiceOfLetter();
+            ticTacToeGame.StartGame();
+            ticTacToeGame.UserMove();
         }
     }
 }
