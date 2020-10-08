@@ -19,6 +19,7 @@ namespace _07_Workshop
                 board[i] = ' ';
                 positionFilled[i] = false;
             }
+            positionFilled[0] = true;
         }
 
         public void ChoiceOfLetter()
@@ -72,40 +73,63 @@ namespace _07_Workshop
 
         public void UserMove()
         {
-            bool flag = true;
-            while (flag)
+            while (PositionAvailable())
             {
-                Console.WriteLine("Available Positions in Board:");
-                for (int i = 1; i < positionFilled.Length; i++)
+                bool flag = true;
+                while (flag)
                 {
-                    if (!positionFilled[i])
+                    Console.WriteLine("Available Positions in Board:");
+                    for (int i = 1; i < positionFilled.Length; i++)
                     {
-                        Console.Write(i + " ");
+                        if (!positionFilled[i])
+                        {
+                            Console.Write(i + " ");
+                        }
+                    }
+                    Console.WriteLine("\nPlease enter your choice from above-mentioned choices");
+                    int userMove = Convert.ToInt32(Console.ReadLine());
+                    if (userMove >= 1 && userMove <= 9 && positionFilled[userMove])
+                    {
+                        Console.WriteLine("Invalid Choice, Position already filled! Enter again!");
+                    }
+                    else if (userMove < 1 || userMove > 9)
+                    {
+                        Console.WriteLine("Invalid Entry! Try Again!");
+                    }
+                    else
+                    {
+                        board[userMove] = humanChoice;
+                        positionFilled[userMove] = true;
+                        flag = false;
                     }
                 }
-                Console.WriteLine("\nPlease enter your choice from above-mentioned choices");
-                int userMove = Convert.ToInt32(Console.ReadLine());
-                if (userMove >= 1 && userMove <= 9 && positionFilled[userMove])
+                DisplayBoard();
+                BotMove();
+                string result = FindWinner();
+                if (result == "Bot")
                 {
-                    Console.WriteLine("Invalid Choice, Position already filled! Enter again!");
+                    Console.WriteLine("Bot Wins the Game");
+                    return;
                 }
-                else if (userMove < 1 || userMove > 9)
+                if (result == "User")
                 {
-                    Console.WriteLine("Invalid Entry! Try Again!");
+                    Console.WriteLine("User Wins the Game");
+                    return;
                 }
-                else
+                if(result == "Play")
                 {
-                    board[userMove] = humanChoice;
-                    positionFilled[userMove] = true;
-                    flag = false;
+                    Console.WriteLine("Play Further!");
                 }
             }
-            DisplayBoard();
-            BotMove();
+            
         }
 
         public void BotMove()
         {
+            if (!PositionAvailable())
+            {
+                return;
+            }
             List<int> availablePlaces = new List<int>();
             for (int i = 1; i < positionFilled.Length; i++)
             {
@@ -128,11 +152,63 @@ namespace _07_Workshop
             if(toss == botFirst)
             {
                 BotMove();
+                UserMove();
             }
             else
             {
                 UserMove();
             }
+        }
+
+        public bool PositionAvailable()
+        {
+            for(int i = 0; i < positionFilled.Length; i++)
+            {
+                if (!positionFilled[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public string FindWinner()
+        {
+            for(int i = 1; i <= 3; i++)
+            {
+                if(board[3*(i-1)+1] == board[3*(i-1)+2] && board[3 * (i - 1) + 2] == board[3 * (i - 1) + 3] && board[3*(i-1)+1] != ' ')
+                {
+                    if (board[3 * (i - 1) + 1] == humanChoice)
+                        return "User";
+                    else return "Bot";
+                }
+            }
+            for (int i = 1; i <= 3; i++)
+            {
+                if (board[i] == board[3+i] && board[3+i] == board[6+i] && board[i] != ' ')
+                {
+                    if (board[i] == humanChoice)
+                        return "User";
+                    else return "Bot";
+                }
+            }
+            if (board[1]==board[5] && board[5] == board[9]  && board[1]!=' ')
+            {
+                if (board[1] == humanChoice)
+                    return "User";
+                else return "Bot";
+            }
+            if (board[3] == board[5] && board[5] == board[7] && board[3]!=' ')
+            {
+                if (board[3] == humanChoice)
+                    return "User";
+                else return "Bot";
+            }
+            if (!PositionAvailable())
+            {
+                return "Tie";
+            }
+            return "Play";
         }
     }
 }
