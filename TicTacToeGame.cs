@@ -9,7 +9,7 @@ namespace _07_Workshop
         char[] board = new char[10];
         public TicTacToeGame()
         {
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < board.Length; i++)
             {
                 board[i] = ' ';
             }
