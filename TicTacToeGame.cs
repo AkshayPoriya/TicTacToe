@@ -8,12 +8,14 @@ namespace _07_Workshop
     {
         char[] board = new char[10];
         char humanChoice = ' ', computerChoice = ' ';
+        private bool[] positionFilled = new bool[10];
 
         public TicTacToeGame()
         {
             for(int i = 0; i < board.Length; i++)
             {
                 board[i] = ' ';
+                positionFilled[i] = false;
             }
         }
 
@@ -51,5 +53,30 @@ namespace _07_Workshop
             Console.WriteLine(board[7] + "|" + board[8] + "|" + board[9]+"\n");
         }
 
+        public void UserMove()
+        {
+            Console.WriteLine("Available Positions in Board:");
+            for(int i = 1; i < positionFilled.Length; i++)
+            {
+                if (!positionFilled[i])
+                {
+                    Console.Write(i + ", ");
+                }
+            }
+            Console.WriteLine("Please enter your choice from above-mentioned choices");
+            int userMove = Convert.ToInt32(Console.ReadLine());
+            if (userMove>=1 && userMove<=9 && positionFilled[userMove])
+            {
+                Console.WriteLine("Invalid Choice, Position already filled!");
+            }
+            else if(userMove<1 || userMove>9)
+            {
+                Console.WriteLine("Invalid Entry");
+            }
+            else
+            {
+                board[userMove] = humanChoice;
+            }
+        }
     }
 }
