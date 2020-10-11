@@ -284,20 +284,28 @@ namespace _07_Workshop
                     return;
                 }
             }
-            List<int> availablePlaces = new List<int>();
-            for (int i = 1; i < positionFilled.Length; i++)
+            // If no corners are available will move to centre
+            if (!positionFilled[5])
             {
-                if (!positionFilled[i])
+                board[5] = computerChoice;
+                positionFilled[5] = true;
+                Console.WriteLine("Bot marks at: " + 5);
+                DisplayBoard();
+                return;
+            }
+            // At last will move to any of remaining sides
+            List<int> sidesList = new List<int> { 2, 4, 6, 8 };
+            for (int i = 0; i < sidesList.Count; i++)
+            {
+                if (!positionFilled[sidesList[i]])
                 {
-                    availablePlaces.Add(i);
+                    board[sidesList[i]] = computerChoice;
+                    positionFilled[sidesList[i]] = true;
+                    Console.WriteLine("Bot marks at: " + sidesList[i]);
+                    DisplayBoard();
+                    return;
                 }
             }
-            int cursorMovement = random.Next(0, availablePlaces.Count);
-            int botMove = availablePlaces[cursorMovement];
-            board[botMove] = computerChoice;
-            positionFilled[botMove] = true;
-            Console.WriteLine("Bot marks at: " + botMove);
-            DisplayBoard();
         }
 
         // This function keep calling BotMove and UserMove untill game is completed
