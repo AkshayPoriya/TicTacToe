@@ -271,6 +271,19 @@ namespace _07_Workshop
                         board[i] = ' ';
                 }
             }
+            // If no-one is winning take one of the available corners
+            List<int> cornersList = new List<int> { 1, 3, 7, 9 };
+            for(int i = 0; i < cornersList.Count; i++)
+            {
+                if (!positionFilled[cornersList[i]])
+                {
+                    board[cornersList[i]] = computerChoice;
+                    positionFilled[cornersList[i]] = true;
+                    Console.WriteLine("Bot marks at: " + cornersList[i]);
+                    DisplayBoard();
+                    return;
+                }
+            }
             List<int> availablePlaces = new List<int>();
             for (int i = 1; i < positionFilled.Length; i++)
             {
@@ -319,6 +332,11 @@ namespace _07_Workshop
                 if (result == "User")
                 {
                     Console.WriteLine("User Wins the Game");
+                    return;
+                }
+                if (result == "Tie")
+                {
+                    Console.WriteLine("Game Tied!");
                     return;
                 }
             }
