@@ -236,6 +236,7 @@ namespace _07_Workshop
         {
             if (!PositionAvailable())
                 return;
+            // Play move in which Bot Win
             for (int i = 1; i < positionFilled.Length; i++)
             {
                 if (!positionFilled[i])
@@ -252,6 +253,7 @@ namespace _07_Workshop
                         board[i] = ' ';
                 }   
             }
+            // Play Move to block User Win
             for (int i = 1; i < positionFilled.Length; i++)
             {
                 if (!positionFilled[i])
