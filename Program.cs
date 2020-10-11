@@ -8,8 +8,6 @@ namespace _07_Workshop
         {
             Console.WriteLine("Welcome to TicTacToe Game!");
             TicTacToeGame ticTacToeGame = new TicTacToeGame();
-            ticTacToeGame.Toss();
-            ticTacToeGame.ChoiceOfLetter();
             ticTacToeGame.StartGame();
         }
     }
